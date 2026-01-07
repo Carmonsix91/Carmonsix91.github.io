@@ -7,136 +7,7 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-
-    <style>
-        /* --- ESTILOS GENERALES --- */
-        :root {
-            --primary: #004aad;
-            --secondary: #002a61;
-            --accent: #00d2ff;
-            --finance: #27ae60;
-            --text: #333;
-            --light-bg: #f4f6f9;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--light-bg); color: var(--text); line-height: 1.6; }
-        html { scroll-behavior: smooth; }
-
-        /* HEADER */
-        header {
-            background-color: rgba(0, 42, 97, 0.95);
-            height: 70px; width: 100%; display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%; position: fixed; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.1); backdrop-filter: blur(5px);
-        }
-        .logo { color: white; font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
-        .nav-links { display: flex; list-style: none; }
-        .nav-links li { position: relative; margin: 0 10px; }
-        .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 8px 15px; display: block; transition: 0.3s; border-radius: 4px; }
-        .nav-links a:hover { background-color: rgba(255,255,255,0.15); color: var(--accent); }
-        .btn-nav-repo { background: var(--accent); color: var(--secondary) !important; font-weight: 700 !important; cursor: pointer; border: none; font-size: 0.9rem; padding: 8px 15px; border-radius: 4px; }
-        
-        /* DROPDOWN */
-        .dropdown-content { display: none; position: absolute; background-color: white; min-width: 220px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); top: 100%; left: 0; border-radius: 5px; }
-        .dropdown-content a { color: var(--text); padding: 12px 20px; border-bottom: 1px solid #f0f0f0; font-size: 0.85rem; }
-        .dropdown-content a:hover { background-color: #f8f9fa; color: var(--primary); padding-left: 25px; }
-        .dropdown:hover .dropdown-content { display: block; }
-
-        /* SECCIONES */
-        section { padding: 80px 8%; border-bottom: 1px solid #eee; }
-        h2 { font-size: 2.2rem; color: var(--secondary); margin-bottom: 40px; text-align: center; font-weight: 800; position: relative; }
-        h2::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent); margin: 10px auto; }
-
-        /* HERO */
-        #inicio {
-            min-height: 100vh;
-            background: linear-gradient(rgba(0, 30, 70, 0.85), rgba(0, 30, 70, 0.7)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover; background-attachment: fixed;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;
-        }
-        #inicio h1 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .hero-btn { padding: 15px 40px; background: var(--accent); color: var(--secondary); font-weight: bold; text-decoration: none; border-radius: 30px; transition: 0.3s; }
-        .hero-btn:hover { background: white; transform: translateY(-3px); }
-
-        /* IDENTIDAD */
-        .split-section { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
-        .split-text { flex: 1; min-width: 300px; }
-        .split-img { flex: 1; min-width: 300px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .split-img img { width: 100%; height: 100%; object-fit: cover; }
-        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-        .value-card { text-align: center; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--primary); transition: 0.3s; }
-        .value-card:hover { transform: translateY(-10px); }
-        .value-icon { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
-
-        /* FINANZAS 3D */
-        .finance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 40px; padding-bottom: 20px; }
-        .finance-card { 
-            background: white; padding: 40px 30px; border-radius: 20px; text-align: center; position: relative; transition: all 0.3s;
-            border: 1px solid #f0f0f0; border-bottom-width: 10px; border-bottom-style: solid; box-shadow: 0 10px 25px rgba(0,0,0,0.08); top: 0;
-        }
-        .finance-card:hover { transform: translateY(-10px); box-shadow: 0 25px 40px rgba(0,0,0,0.12); }
-        .op-card { border-bottom-color: #3498db; } .op-card .finance-icon { color: #3498db; background: rgba(52, 152, 219, 0.1); }
-        .tech-card { border-bottom-color: #9b59b6; } .tech-card .finance-icon { color: #9b59b6; background: rgba(155, 89, 182, 0.1); }
-        .total-card { border-bottom-color: #27ae60; } .total-card .finance-icon { color: #27ae60; background: rgba(39, 174, 96, 0.1); }
-        .finance-icon { font-size: 3.5rem; margin-bottom: 20px; display: inline-block; padding: 20px; border-radius: 50%; }
-        .cost-amount { font-size: 2.2rem; font-weight: 900; margin: 15px 0; color: #2c3e50; letter-spacing: -1px; }
-        .cost-label { text-transform: uppercase; font-size: 0.8rem; color: #95a5a6; letter-spacing: 1.5px; font-weight: 600; }
-
-        /* TABLAS */
-        .table-container { overflow-x: auto; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); padding: 20px; margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th { background: var(--secondary); color: white; padding: 15px; text-align: left; }
-        td { padding: 15px; border-bottom: 1px solid #eee; }
-
-        /* GESTION (SLAs) */
-        #gestion { background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1558494949-efc5270f9c63?auto=format&fit=crop&w=1600&q=80'); background-attachment: fixed; background-size: cover; }
-        .sla-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .sla-icon { color: #27ae60; font-size: 1.2rem; }
-
-        /* DOCUMENTOS (BOTONES) */
-        .doc-btn {
-            background: var(--primary); color: white; padding: 15px 20px; border-radius: 10px; 
-            text-decoration: none; display: flex; align-items: center; justify-content: space-between;
-            transition: 0.3s; font-weight: 600; border: 1px solid transparent; cursor: pointer;
-        }
-        .doc-btn:hover { background: white; color: var(--primary); border-color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .dl-icon { font-size: 1.8rem; margin-right: 15px; }
-
-        /* --- ESTILOS DE LOS MODALES (POP-UPS) --- */
-        .modal {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-            overflow: auto; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background-color: #fefefe; margin: 5% auto; padding: 0; border-radius: 10px; width: 80%; max-width: 900px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.3); animation: slideIn 0.4s;
-        }
-        @keyframes slideIn { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
-        
-        .modal-header { padding: 20px 30px; background: var(--secondary); color: white; display: flex; justify-content: space-between; align-items: center; border-radius: 10px 10px 0 0; }
-        .modal-header h3 { margin: 0; font-size: 1.2rem;}
-        .close { color: white; float: right; font-size: 28px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .close:hover { color: var(--accent); }
-        
-        .modal-body { padding: 30px; max-height: 70vh; overflow-y: auto; color: #333; }
-        .modal-body h4 { color: var(--primary); margin-top: 20px; border-bottom: 2px solid #eee; padding-bottom: 5px; }
-        .modal-body ul { margin-left: 20px; margin-bottom: 15px; }
-        .modal-body p { margin-bottom: 15px; text-align: justify; }
-
-        /* MOVIL */
-        .burger { display: none; cursor: pointer; color: white; font-size: 1.8rem; }
-        @media (max-width: 1024px) {
-            .nav-links { position: absolute; right: 0; height: 100vh; top: 70px; background-color: var(--secondary); flex-direction: column; width: 70%; transform: translateX(100%); transition: 0.4s; padding-top: 20px; }
-            .nav-links li { opacity: 1; margin: 20px 0; text-align: center; }
-            .burger { display: block; }
-            .nav-active { transform: translateX(0%); }
-            .dropdown-content { position: static; display: none; width: 100%; background: rgba(0,0,0,0.2); }
-            .dropdown.active .dropdown-content { display: block; }
-            .split-section { flex-direction: column; }
-            .finance-grid { gap: 30px; }
-            .modal-content { width: 95%; margin: 10% auto; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -257,40 +128,69 @@
     </section>
 
     <section id="repositorio" style="background: #2c3e50; color: white;">
-        <h2 style="color: white;"><i class="fas fa-folder-open"></i> Visor de Documentos</h2>
-        <p style="text-align: center; margin-bottom: 40px;">Haga clic en los botones para leer el contenido completo de cada entregable.</p>
+        <h2 style="color: white;"><i class="fas fa-folder-open"></i> Repositorio Documental</h2>
+        <p style="text-align: center; margin-bottom: 40px;">Consulte la información en línea o descargue los archivos oficiales.</p>
         
         <div class="values-grid">
-            <div class="doc-btn" onclick="openModal('modalCaso')">
-                <div style="display:flex; align-items:center;">
+            
+            <div class="doc-card-container">
+                <div class="doc-info">
                     <i class="fas fa-file-contract dl-icon"></i> 
-                    <div style="text-align:left;">Caso de Negocio<br><span style="font-size:0.7rem; opacity:0.8;">Ver Contenido</span></div>
+                    <div style="text-align:left;">Caso de Negocio<br><span style="font-size:0.7rem; opacity:0.8;">PDF Oficial</span></div>
                 </div>
-                <i class="fas fa-eye"></i>
+                <div class="doc-actions">
+                    <button class="action-btn btn-view" onclick="openModal('modalCaso')">
+                        <i class="fas fa-eye"></i> Ver
+                    </button>
+                    <a href="./IT/docs/Caso_de_Negocio.pdf" class="action-btn btn-download" download="Negocio.pdf">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
             </div>
             
-            <div class="doc-btn" onclick="openModal('modalFact')">
-                <div style="display:flex; align-items:center;">
+            <div class="doc-card-container">
+                <div class="doc-info">
                     <i class="fas fa-file-invoice-dollar dl-icon"></i> 
-                    <div style="text-align:left;">Estudio Factibilidad<br><span style="font-size:0.7rem; opacity:0.8;">Ver Contenido</span></div>
+                    <div style="text-align:left;">Estudio Factibilidad<br><span style="font-size:0.7rem; opacity:0.8;">PDF Oficial</span></div>
                 </div>
-                <i class="fas fa-eye"></i>
+                <div class="doc-actions">
+                    <button class="action-btn btn-view" onclick="openModal('modalFact')">
+                        <i class="fas fa-eye"></i> Ver
+                    </button>
+                    <a href="./IT/docs/Estudio_Factibilidad.pdf" class="action-btn btn-download" download="Factibilidad.pdf">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
             </div>
 
-            <div class="doc-btn" onclick="openModal('modalBSC')">
-                <div style="display:flex; align-items:center;">
+            <div class="doc-card-container">
+                <div class="doc-info">
                     <i class="fas fa-project-diagram dl-icon"></i> 
-                    <div style="text-align:left;">Balanced Scorecard<br><span style="font-size:0.7rem; opacity:0.8;">Ver Contenido</span></div>
+                    <div style="text-align:left;">Balanced Scorecard<br><span style="font-size:0.7rem; opacity:0.8;">PDF Oficial</span></div>
                 </div>
-                <i class="fas fa-eye"></i>
+                <div class="doc-actions">
+                    <button class="action-btn btn-view" onclick="openModal('modalBSC')">
+                        <i class="fas fa-eye"></i> Ver
+                    </button>
+                    <a href="./IT/docs/Balanced_Scorecard.pdf" class="action-btn btn-download" download="Balanced.pdf">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
             </div>
 
-            <div class="doc-btn" onclick="openModal('modalSLA')">
-                <div style="display:flex; align-items:center;">
+            <div class="doc-card-container">
+                <div class="doc-info">
                     <i class="fas fa-tasks dl-icon"></i> 
-                    <div style="text-align:left;">Niveles de Servicio<br><span style="font-size:0.7rem; opacity:0.8;">Ver Contenido</span></div>
+                    <div style="text-align:left;">Niveles de Servicio<br><span style="font-size:0.7rem; opacity:0.8;">PDF Oficial</span></div>
                 </div>
-                <i class="fas fa-eye"></i>
+                <div class="doc-actions">
+                    <button class="action-btn btn-view" onclick="openModal('modalSLA')">
+                        <i class="fas fa-eye"></i> Ver
+                    </button>
+                    <a href="./IT/docs/Practica_SLA.pdf" class="action-btn btn-download" download="SLA.pdf">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -303,24 +203,11 @@
             </div>
             <div class="modal-body">
                 <h4>Información General</h4>
-                <p><strong>Proyecto:</strong> Servicio Integral de Seguridad de Aplicaciones (Clave: SEG-APP-001).<br>
-                <strong>Fecha Inicio:</strong> 25 de agosto de 2025. <strong>Fecha Fin:</strong> 7 de enero de 2026.</p>
-                
-                <h4>Antecedentes</h4>
-                <p>Las aplicaciones web gubernamentales manejan información crítica y están expuestas a amenazas cibernéticas avanzadas como inyecciones SQL y XSS. La falta de un servicio especializado incrementa el riesgo de brechas de seguridad.</p>
-                
+                <p><strong>Proyecto:</strong> Servicio Integral de Seguridad de Aplicaciones (Clave: SEG-APP-001).</p>
                 <h4>Justificación Técnica</h4>
-                <p>El servicio implementa controles SAST/DAST, gestión de vulnerabilidades y monitoreo continuo. Permite identificar y remediar vulnerabilidades antes de que sean explotadas, integrándose con el ciclo DevSecOps.</p>
-                
+                <p>El servicio implementa controles SAST/DAST, gestión de vulnerabilidades y monitoreo continuo.</p>
                 <h4>Objetivo</h4>
-                <p>Reducir en un 95% las vulnerabilidades críticas y altas, asegurando una respuesta a incidentes en un tiempo no mayor a 2 horas, dentro de los 60 días posteriores a la implementación.</p>
-                
-                <h4>Riesgos Clave</h4>
-                <ul>
-                    <li>Falsos positivos en detección (Impacto Medio).</li>
-                    <li>Resistencia al cambio en equipos de desarrollo (Impacto Medio).</li>
-                    <li>Incremento inicial en tiempo de desarrollo (Impacto Bajo).</li>
-                </ul>
+                <p>Reducir en un 95% las vulnerabilidades críticas y altas.</p>
             </div>
         </div>
     </div>
@@ -332,30 +219,12 @@
                 <span class="close" onclick="closeModal('modalFact')">&times;</span>
             </div>
             <div class="modal-body">
-                <h4>Factibilidad Operativa (Nómina)</h4>
-                <p>El equipo requerido incluye:</p>
-                <ul>
-                    <li><strong>Líder de Proyecto TI (2):</strong> $50,709.30 (Anual).</li>
-                    <li><strong>Red Team (Pentester) (4):</strong> $40,567.95 (Anual).</li>
-                    <li><strong>Blue Team (Soporte) (2):</strong> $46,364.10 (Anual).</li>
-                    <li><strong>Ingeniero DevSecOps (3):</strong> $37,671.15 (Anual).</li>
-                </ul>
+                <h4>Factibilidad Operativa</h4>
                 <p><strong>Total Nómina Anual:</strong> $223,261.36 MXN.</p>
-                
-                <h4>Factibilidad Tecnológica (Infraestructura)</h4>
-                <ul>
-                    <li><strong>Hardware:</strong> 12 Laptops Alto Rendimiento (i9/i7) - $480,000.00.</li>
-                    <li><strong>Appliance WAF:</strong> $120,000.00.</li>
-                    <li><strong>Software:</strong> Licencias Pentesting ($95k), SIEM ($85k), Service Desk ($28k).</li>
-                    <li><strong>Cloud Staging:</strong> $80,000.00.</li>
-                </ul>
-                <p><strong>Costo Total Tecnológico:</strong> $1,089,000.00 MXN.</p>
-
-                <h4>Conclusión Financiera</h4>
-                <p style="background:#e8f5e9; padding:10px; border-radius:5px;">
-                    <strong>Inversión Total Requerida:</strong> $1,312,261.36 MXN.<br>
-                    El proyecto es totalmente viable operativa, tecnológica y económicamente.
-                </p>
+                <h4>Factibilidad Tecnológica</h4>
+                <p><strong>Costo Total:</strong> $1,089,000.00 MXN.</p>
+                <h4>Conclusión</h4>
+                <p><strong>Inversión Total Requerida:</strong> $1,312,261.36 MXN. Proyecto viable.</p>
             </div>
         </div>
     </div>
@@ -363,27 +232,14 @@
     <div id="modalBSC" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Balanced Scorecard (Estrategia)</h3>
+                <h3>Balanced Scorecard</h3>
                 <span class="close" onclick="closeModal('modalBSC')">&times;</span>
             </div>
             <div class="modal-body">
-                <h4>Identidad Corporativa</h4>
-                <p><strong>Misión:</strong> Ser el socio tecnológico estratégico, impulsando eficiencia con soluciones seguras.</p>
-                <p><strong>Visión:</strong> Ser líderes regionales en servicios de TI reconocidos por excelencia operativa.</p>
-                
-                <h4>Metas Corporativas (2026)</h4>
-                <table style="width:100%; border-collapse:collapse; margin-bottom:20px;">
-                    <tr style="background:#eee;"><th style="padding:8px;">Perspectiva</th><th style="padding:8px;">Meta</th></tr>
-                    <tr><td style="padding:8px; border-bottom:1px solid #ddd;">Financiera</td><td style="padding:8px; border-bottom:1px solid #ddd;">>= 25% ingresos por servicios nuevos.</td></tr>
-                    <tr><td style="padding:8px; border-bottom:1px solid #ddd;">Cliente</td><td style="padding:8px; border-bottom:1px solid #ddd;">CSAT >= 90%; NPS >= 50.</td></tr>
-                    <tr><td style="padding:8px; border-bottom:1px solid #ddd;">Procesos</td><td style="padding:8px; border-bottom:1px solid #ddd;">Reducir incidentes críticos en 20%.</td></tr>
-                </table>
-
-                <h4>Metas de TI</h4>
+                <h4>Metas Corporativas</h4>
                 <ul>
-                    <li><strong>Eficiencia:</strong> Reducir costos de entrega en 10% mediante automatización.</li>
-                    <li><strong>Calidad:</strong> Cumplimiento de SLA >= 95%.</li>
-                    <li><strong>DevOps:</strong> Tasa de cambios exitosos >= 95%.</li>
+                    <li>Financiera: >= 25% ingresos nuevos.</li>
+                    <li>Cliente: CSAT >= 90%.</li>
                 </ul>
             </div>
         </div>
@@ -392,21 +248,14 @@
     <div id="modalSLA" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Niveles de Servicio (SLA y OLA)</h3>
+                <h3>Niveles de Servicio</h3>
                 <span class="close" onclick="closeModal('modalSLA')">&times;</span>
             </div>
             <div class="modal-body">
-                <h4>Acuerdos de Nivel de Servicio (SLA) - Cliente</h4>
+                <h4>SLA Cliente</h4>
                 <ul>
-                    <li><strong>Servidores:</strong> Disponibilidad mensual del 98%. Tiempo de recuperación ante fallos máximo 2 horas.</li>
-                    <li><strong>Correo Electrónico:</strong> Disponibilidad 98%. Restablecimiento de cuentas bloqueadas en 4 horas hábiles.</li>
-                    <li><strong>Internet:</strong> Velocidad mínima en zonas críticas de 30 Mbps. Atención a reportes en 30 min.</li>
-                </ul>
-
-                <h4>Acuerdos de Nivel Operativo (OLA) - Interno</h4>
-                <ul>
-                    <li><strong>Seguridad:</strong> Atención a incidentes críticos en máximo 20 minutos. Validación de seguridad pre-producción en 48 horas.</li>
-                    <li><strong>Redes:</strong> Diagnóstico de caídas en 15 minutos. Configuración de nuevos servicios en 72 horas.</li>
+                    <li>Servidores: 98% disponibilidad.</li>
+                    <li>Internet: 30 Mbps zonas críticas.</li>
                 </ul>
             </div>
         </div>
@@ -416,37 +265,6 @@
         <p>&copy; 2026 Innovatec IT Solutions. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-        // MENU MOVIL
-        const burger = document.querySelector('.burger');
-        const nav = document.querySelector('.nav-links');
-        const dropdowns = document.querySelectorAll('.dropdown');
-
-        burger.addEventListener('click', () => { nav.classList.toggle('nav-active'); });
-        dropdowns.forEach(drop => {
-            drop.addEventListener('click', () => {
-                if(window.innerWidth <= 1024) drop.classList.toggle('active');
-            });
-        });
-
-        // FUNCIONES MODALES
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
-            document.body.style.overflow = "hidden"; // Bloquear scroll fondo
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-            document.body.style.overflow = "auto"; // Activar scroll fondo
-        }
-
-        // CERRAR AL HACER CLIC FUERA DEL MODAL
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = "none";
-                document.body.style.overflow = "auto";
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
